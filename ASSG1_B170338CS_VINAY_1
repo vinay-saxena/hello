@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int head, tail;
+int size;
+
+int isEmpty(){
+	if(head == tail)
+		return 1;
+	else
+		return 0;
+}
+
+int isFull(){
+	if(tail>=size)
+		return 1;
+	else
+		return 0;
+}
+
+void enqueue(int* queue, int x){
+	if(isFull())
+		printf("Overflow...!!!\n");
+	else{
+		queue[tail] = x;
+		tail++;
+	}
+}
+
+int dequeue(int* queue){
+	if(isEmpty()){
+		printf("Underflow...!!!\n");
+		return 191919;
+	}
+	else{
+		head++;
+		return queue[head-1];
+	}
+}
+
+void print(int* queue){
+	int i;
+	if(isEmpty())
+		printf("Empty queue\n");
+	else{
+		for(i=head; i<(tail-1); i++)
+			printf("%d ", queue[i]);
+		printf("%d\n", queue[tail-1]);
+	}
+}
+
+void main(argc, argv)
+int argc; char *argv[];
+{
+int  n,x,i,c,queue;
+	FILE *fp = fopen(argv[1], "r");
+	FILE *fpw = fopen(argv[2], "w");
+	int *arr;
+	if(fp == NULL){
+		printf("Cant open FILE ..!!!\n");
+		exit(0);
+	}
+	while(fscanf(fp, "%d", &n) != EOF){
+		arr = (int*)malloc(n*sizeof(int));
+
+		for(i=0; i<n; i++)
+			fscanf(fp, "%d", &arr[i]);}
+	
+
+		while(1){
+		printf("Enter your choice : \n 1.enqueue \n 2.dequeue \n 3.print \n 4.reversedqueue");
+		scanf("%d", &c);
+		switch(c){
+			case 1:
+				printf("Enter the element to be enqueued : ");
+				scanf("%d", &x);
+				enqueue(queue);
+				break;
+			case 2:
+				x = dequeue(queue);
+				if(x!=191919)
+					printf("%d\n", x);
+				break;
+			case 3:
+				print(queue);
+				for(i=0; i<n; i++)
+				fprintf(fpw, "%d ", arr[i]);
+			fprintf(fpw, "\n");
+				break;
+			case 4:
+				exit(0);
+			default:
+				printf("Invalid choice... Try again...1\n");
+			break;
+		}
+	fclose(fp);
+	fclose(fpw);
+}}
+
+    } 
+} 
+
+ 
